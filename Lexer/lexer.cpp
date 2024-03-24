@@ -1,6 +1,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <sstream>
+
 using namespace std;
 
 #include <string>
@@ -52,8 +54,14 @@ vector<string> Lexer(string lexeme){
 
 int main(){
     vector<string> expression;
-    string lexeme = "print 56+4";
-    expression = Lexer(lexeme);
-    Analyser(expression);
+    string lexeme = "print 56+4\n64-6";
+    stringstream ss(lexeme);
+    string token;
+    while (getline(ss, token, '\n')) {
+        vector<string> tokens = Lexer(token);
+        expression.insert(expression.end(), tokens.begin(), tokens.end());
+    }
+    // Analyser(expression);
+    cout << expression[4] << endl;
     return 0;
 }
