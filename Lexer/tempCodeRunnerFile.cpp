@@ -18,11 +18,6 @@ enum TokenType {
 struct Token {
     TokenType type;
     std::string lexeme;
-
-    friend std::ostream& operator<<(std::ostream& os, const Token& token) {
-        os << "Type: " << token.type << ", Lexeme: " << token.lexeme;
-        return os;
-    }
 };
 
 vector<Token> Lexer(string lexeme){
@@ -61,10 +56,7 @@ int main(){
     while (getline(ss, token, '\n')) {
         vector<Token> tokens = Lexer(token);
         expression.insert(expression.end(), tokens.begin(), tokens.end());
-        cout << "Tokens:" << endl;
-        for (const auto& tok : tokens) {
-            cout << tok << endl;
-        }
+    cout<<tokens[0];
     }
     return 0;
 }
